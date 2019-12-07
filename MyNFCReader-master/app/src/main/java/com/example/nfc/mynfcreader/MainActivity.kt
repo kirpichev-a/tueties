@@ -3,6 +3,7 @@ package com.example.nfc.mynfcreader
 import android.app.Activity
 import android.app.PendingIntent
 import android.content.Intent
+import android.media.MediaPlayer
 import android.nfc.NfcAdapter
 import android.nfc.Tag
 import android.nfc.tech.MifareClassic
@@ -18,8 +19,10 @@ import android.nfc.NdefMessage
 import android.nfc.NdefRecord
 import android.os.Parcelable
 import android.util.Log;
-
-
+import android.widget.Button
+import android.support.v4.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.widget.ImageView
 
 
 class MainActivity : Activity() {
@@ -32,6 +35,13 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val button = findViewById<ImageView>(R.id.maps)
+        button.setOnClickListener {
+            openMaps()
+            // do something when the corky is clicked
+        }
+
         text = findViewById<View>(R.id.text) as TextView
         nfcAdapter = NfcAdapter.getDefaultAdapter(this)
 
@@ -44,6 +54,11 @@ class MainActivity : Activity() {
         pendingIntent = PendingIntent.getActivity(this, 0,
                 Intent(this, this.javaClass)
                         .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0)
+    }
+    /** Called when the user taps the Send button  */
+    private fun openMaps() {
+        val intent = Intent(this, CustomerInfoActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onResume() {
@@ -152,6 +167,9 @@ class MainActivity : Activity() {
                 Log.i("NFC", "Size:" + rawMsgs.size);
                 val ndefMessages: Array<NdefMessage> = Array(rawMsgs.size, {i -> rawMsgs[i] as NdefMessage});
                 displayNfcMessages(ndefMessages)
+                val mp = MediaPlayer.create(this, R.raw.scannerkasse)
+                mp.start();
+                // openMaps()
             } else {
                 val empty = ByteArray(0)
                 val id = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID)
