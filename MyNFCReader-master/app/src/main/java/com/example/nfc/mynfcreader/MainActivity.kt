@@ -24,7 +24,6 @@ import android.support.v4.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.widget.ImageView
 
-
 class MainActivity : Activity() {
     private var nfcAdapter: NfcAdapter? = null
     // launch our application when a new Tag or Card will be scanned
@@ -57,7 +56,11 @@ class MainActivity : Activity() {
     }
     /** Called when the user taps the Send button  */
     private fun openMaps() {
-        val intent = Intent(this, MapsActivity::class.java)
+        val intent = Intent(this, ScannerConfirmationActivity::class.java)
+        startActivity(intent)
+    }
+    private fun openScannerConfirmation() {
+        val intent = Intent(this, ScannerConfirmationActivity::class.java)
         startActivity(intent)
     }
     private fun openScanConfirmation() {
@@ -173,7 +176,7 @@ class MainActivity : Activity() {
                 displayNfcMessages(ndefMessages)
                 val mp = MediaPlayer.create(this, R.raw.scannerkasse)
                 mp.start();
-                openScanConfirmation()
+                openScannerConfirmation()
             } else {
                 val empty = ByteArray(0)
                 val id = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID)
