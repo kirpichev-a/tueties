@@ -57,7 +57,11 @@ class MainActivity : Activity() {
     }
     /** Called when the user taps the Send button  */
     private fun openMaps() {
-        val intent = Intent(this, CustomerInfoActivity::class.java)
+        val intent = Intent(this, MapsActivity::class.java)
+        startActivity(intent)
+    }
+    private fun openScanConfirmation() {
+        val intent = Intent(this, ScanConfirmationActivity::class.java)
         startActivity(intent)
     }
 
@@ -169,7 +173,7 @@ class MainActivity : Activity() {
                 displayNfcMessages(ndefMessages)
                 val mp = MediaPlayer.create(this, R.raw.scannerkasse)
                 mp.start();
-                // openMaps()
+                openScanConfirmation()
             } else {
                 val empty = ByteArray(0)
                 val id = intent.getByteArrayExtra(NfcAdapter.EXTRA_ID)
