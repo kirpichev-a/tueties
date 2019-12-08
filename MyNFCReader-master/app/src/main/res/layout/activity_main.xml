@@ -13,11 +13,11 @@
         tools:context="com.ssaurel.nfcreader.MainActivity">
 
         <ImageView
-            android:id="@+id/recycle"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:id="@+id/logo"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_marginTop="50dp"
-            android:src="@drawable/recycle"
+            android:src="@drawable/bag_transp"
             android:layout_centerHorizontal="true"/>
 
         <TextView
@@ -30,15 +30,15 @@
             android:textSize="20sp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="50dp"
             android:gravity="center_horizontal"
-            android:layout_below="@id/recycle"/>
+            android:layout_below="@id/logo"/>
         <ImageView
             android:id="@+id/nfc"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="175dp"
+            android:layout_marginLeft="180dp"
             android:src="@drawable/nfc"
             android:layout_below="@id/text"/>
         />

@@ -8,13 +8,16 @@
     <uses-feature android:name="android.hardware.nfc" />
     <uses-feature android:name="android.hardware.bluetooth" />
 
+
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="something"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light">
+        android:theme="@style/Theme.AppCompat.Light"
+        android:usesCleartextTraffic="true">
         <activity android:name=".MapsActivity"></activity>
         <activity android:name=".ScanConfirmationActivity" />
         <activity android:name=".MainActivity">
